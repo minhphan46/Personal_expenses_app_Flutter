@@ -16,6 +16,7 @@ class TransactionCard extends StatelessWidget {
       margin: EdgeInsets.symmetric(vertical: 8, horizontal: 5),
       elevation: 5,
       child: ListTile(
+        //onTap: () => print(MediaQuery.of(context).size.width),
         leading: CircleAvatar(
           radius: 30,
           child: Padding(
@@ -34,13 +35,25 @@ class TransactionCard extends StatelessWidget {
             color: Colors.grey,
           ),
         ),
-        trailing: IconButton(
-          icon: Icon(
-            Icons.delete_outlined,
-            color: Theme.of(context).errorColor,
-          ),
-          onPressed: () => deleteTransaction(transaction.id),
-        ),
+        trailing: MediaQuery.of(context).size.width > 412
+            ? TextButton.icon(
+                onPressed: () => deleteTransaction(transaction.id),
+                style: TextButton.styleFrom(
+                  primary: Theme.of(context).errorColor,
+                ),
+                icon: Icon(
+                  Icons.delete_outlined,
+                  color: Theme.of(context).errorColor,
+                ),
+                label: Text("Delete"),
+              )
+            : IconButton(
+                icon: Icon(
+                  Icons.delete_outlined,
+                  color: Theme.of(context).errorColor,
+                ),
+                onPressed: () => deleteTransaction(transaction.id),
+              ),
       ),
     );
   }

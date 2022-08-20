@@ -109,8 +109,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    final _islandscape =
-        (MediaQuery.of(context).orientation == Orientation.landscape);
+    final mediaQuery = MediaQuery.of(context);
+    final _islandscape = (mediaQuery.orientation == Orientation.landscape);
     // bien kiem tra man hinh ngang
 
     final appBar = AppBar(
@@ -124,9 +124,9 @@ class _MyHomePageState extends State<MyHomePage> {
     );
 
     final TransactionListWidget = Container(
-      height: (MediaQuery.of(context).size.height -
+      height: (mediaQuery.size.height -
               appBar.preferredSize.height -
-              MediaQuery.of(context).padding.top) *
+              mediaQuery.padding.top) *
           0.7,
       child: TransactionList(
         transactions: _userTransactions,
@@ -135,9 +135,9 @@ class _MyHomePageState extends State<MyHomePage> {
     );
 
     final ShowCharWidget = Container(
-      height: (MediaQuery.of(context).size.height -
+      height: (mediaQuery.size.height -
               appBar.preferredSize.height -
-              MediaQuery.of(context).padding.top) *
+              mediaQuery.padding.top) *
           ((_islandscape) ? 0.7 : 0.3),
       child: Chart(recentTransactions: _recentTransactions),
     );
